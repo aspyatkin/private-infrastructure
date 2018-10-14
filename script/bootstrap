@@ -1,0 +1,41 @@
+#!/usr/bin/env sh
+if [ -f ".env" ]
+then
+  set -a
+  . $PWD/.env
+  set +a
+fi
+
+if [ "$1" != "" ]
+then
+  NODE_NAME="$1"
+else
+  echo "Unspecified node name!"
+  exit 1
+fi
+
+if [ "$2" != "" ]
+then
+  NODE_ENVIRONMENT="$2"
+else
+  if [ "$KNIFE_NODE_DEFAULT_ENVIRONMENT" != "" ]
+  then
+    NODE_ENVIRONMENT="$KNIFE_NODE_DEFAULT_ENVIRONMENT"
+  else
+    echo "Unspecified default environment!"
+    exit 2
+  fi
+fi
+
+NODE_FQDN_SUFFIX_ENV_VAR=`echo "KNIFE_NODE_FQDN_$NODE_ENVIRONMENT" | tr '[:lower:]' '[:upper:]'`
+NODE_FQDN_SUFFIX=$(printenv "$NODE_FQDN_SUFFIX_ENV_VAR")
+
+if [ "$NODE_FQDN_SUFFIX" != "" ]
+then
+  NODE_FQDN="$NODE_NAME.$NODE_FQDN_SUFFIX"
+else
+  echo "Unsupported environment <$NODE_ENVIRONMENT>!"
+  exit 3
+fi
+
+KNIFE_NODE_ENVIRONMENT="$NODE_ENVIRONMENT" bundle exec knife zero bootstrap --no-converge --environment "$NODE_ENVIRONMENT" --node-name "$NODE_NAME" "$NODE_FQDN"

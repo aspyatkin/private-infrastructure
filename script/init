@@ -1,0 +1,27 @@
+#!/usr/bin/env sh
+if [ ! -d "$HOME/.well-known" ]; then
+  mkdir "$HOME/.well-known"
+
+  if [ ! -f "$HOME/.well-known/vagrant_private_key" ]; then
+    wget -O "$HOME/.well-known/vagrant_private_key" https://raw.githubusercontent.com/hashicorp/vagrant/master/keys/vagrant
+    chmod 600 "$HOME/.well-known/vagrant_private_key"
+  fi
+
+  if [ ! -f "$HOME/.well-known/chef_data_bag_secret_development" ]; then
+    openssl rand -base64 512 | tr -d '\r\n' > "$HOME/.well-known/chef_data_bag_secret_development"
+    chmod 600 "$HOME/.well-known/chef_data_bag_secret_development"
+  fi
+
+  if [ ! -f "$HOME/.well-known/chef_data_bag_secret_production" ]; then
+    openssl rand -base64 512 | tr -d '\r\n' > "$HOME/.well-known/chef_data_bag_secret_production"
+    chmod 600 "$HOME/.well-known/chef_data_bag_secret_production"
+  fi
+fi
+
+if [ ! -f "$PWD/.env" ]; then
+  cp "$PWD/.example.env" "$PWD/.env"
+fi
+
+bundle install
+bundle exec berks install
+vagrant plugin install --plugin-version 1.4.3 vagrant-helpers

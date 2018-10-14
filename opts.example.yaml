@@ -1,0 +1,18 @@
+vms:
+  alfa:
+    box: aspyatkin/ubuntu-16.04-server-amd64
+    box_version: ~> 3.0.0
+    ssh_insert_key: no
+    name: alfa.e17k.test
+    memory: 1024
+    cpus: 2
+    hostname: alfa.e17k.test
+    network:
+      private:
+        - ip: aaa.bbb.ccc.ddd
+          netmask: eee.fff.ggg.hhh
+    synced_folders:
+      - host: .
+        guest: /vagrant
+        opts:
+          disabled: yes

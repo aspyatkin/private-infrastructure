@@ -1,0 +1,55 @@
+#!/usr/bin/env sh
+if [ -f ".env" ]
+then
+  set -a
+  . $PWD/.env
+  set +a
+fi
+
+if [ "$1" != "" ]
+then
+  DATA_BAG_ACTION="$1"
+else
+  echo "Unspecified data bag action!"
+  exit 1
+fi
+
+if [ "$2" != "" ]
+then
+  DATA_BAG_NAME="$2"
+else
+  echo "Unspecified data bag name!"
+  exit 2
+fi
+
+if [ "$3" != "" ]
+then
+  NODE_ENVIRONMENT="$3"
+else
+  if [ "$KNIFE_NODE_DEFAULT_ENVIRONMENT" != "" ]
+  then
+    NODE_ENVIRONMENT="$KNIFE_NODE_DEFAULT_ENVIRONMENT"
+  else
+    echo "Unspecified default environment!"
+    exit 3
+  fi
+fi
+
+NODE_IGNORE_SECRET_FILE_ENV_VAR=`echo "KNIFE_NODE_IGNORE_SECRET_FILE_$NODE_ENVIRONMENT" | tr '[:lower:]' '[:upper:]'`
+NODE_SECRET_FILE_ENV_VAR=`echo "KNIFE_NODE_SECRET_FILE_$NODE_ENVIRONMENT" | tr '[:lower:]' '[:upper:]'`
+
+NODE_IGNORE_SECRET_FILE=$(printenv "$NODE_IGNORE_SECRET_FILE_ENV_VAR")
+NODE_SECRET_FILE=$(printenv "$NODE_SECRET_FILE_ENV_VAR")
+
+if [ "$NODE_IGNORE_SECRET_FILE" != "yes" ]
+then
+  if [ -f "$NODE_SECRET_FILE" ]
+  then
+    bundle exec knife data bag "$1" "$2" "$NODE_ENVIRONMENT" --secret-file "$NODE_SECRET_FILE"
+  else
+    echo "Inexistent secret file <$NODE_SECRET_FILE>!"
+    exit 4
+  fi
+else
+  bundle exec knife data bag "$1" "$2" "$NODE_ENVIRONMENT"
+fi
