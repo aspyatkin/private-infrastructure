@@ -1,0 +1,10 @@
+{
+  "id": "production",
+  "lyra.e17k.com": {
+    "encrypted_data": "zolWFuop+cnM2MmieIvUcX2jn/ylGgv15iq4JmsutxwZ5Z6Y4BjvoAvl40d8\nalPJoLKzbDXGhqwMIZHFN2j6\n",
+    "iv": "G7YOEhVOqZamTkYL\n",
+    "auth_tag": "3mLD2aE6b3Ao0SYCWwzvEg==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

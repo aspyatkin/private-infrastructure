@@ -1,3 +1,23 @@
 {
-  "name": "production"
+  "name": "production",
+  "default_attributes": {
+    "build-essential": {
+      "compile_time": true
+    },
+    "dhparam": {
+      "default_key_size": 2048
+    },
+    "latest-nodejs": {
+      "install": "current",
+      "binary": true
+    },
+    "ntp": {
+      "servers": [
+        "0.pool.ntp.org",
+        "1.pool.ntp.org",
+        "2.pool.ntp.org",
+        "3.pool.ntp.org"
+      ]
+    }
+  }
 }

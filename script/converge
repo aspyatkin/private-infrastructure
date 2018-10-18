@@ -2,9 +2,15 @@
 if [ "$1" != "" ]
 then
   NODE_NAME="$1"
+  shift 1
 else
   echo "Unspecified node name!"
   exit 1
 fi
 
-bundle exec knife zero converge "name:$NODE_NAME"
+if [ "$1" == "--" ]
+then
+  shift 1
+fi
+
+bundle exec knife zero converge "$@" "name:$NODE_NAME"
