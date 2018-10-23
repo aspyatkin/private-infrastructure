@@ -1,6 +1,6 @@
 DEPENDENCIES
   build-essential
-  dhparam (~> 1.0.0)
+  dhparam (~> 1.0.1)
   dotfiles
     git: https://github.com/aspyatkin/dotfiles-cookbook.git
     revision: 5a1675c593b603fd4c0e6ce6b7ddd0076c662fe9
@@ -41,7 +41,7 @@ GRAPH
     seven_zip (>= 0.0.0)
   chef-sugar (4.1.0)
   compat_resource (12.19.1)
-  dhparam (1.0.0)
+  dhparam (1.0.1)
   dotfiles (1.4.0)
     vim (~> 2.0.2)
     zsh (~> 2.0.0)
