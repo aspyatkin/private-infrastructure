@@ -1,9 +1,16 @@
 {
   "id": "production",
   "lyra.e17k.com": {
-    "encrypted_data": "QHZR8ApeVoramFAKjL91mipomsjaR1qait1KIdvxTrgxjOvb+gQnJ4s6Vdb1\n5YVW7ovZUa1p4ZIB38KB\n",
-    "iv": "nU1uNSAhTrFQLH1X\n",
-    "auth_tag": "rSECvj1Tk8J7asYPvowY1A==\n",
+    "encrypted_data": "lf82101GuhvnaCHcXZRtFlr8lbUCLgBiROymtrmyWvuvybILpYBBxdlsAmLj\nV80yU28umSprntz+eFQF\n",
+    "iv": "IUKHARS2MWjqdZuY\n",
+    "auth_tag": "3pSGed/P5+GTKxgvalARFw==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "taurus.e17k.com": {
+    "encrypted_data": "lRxa/DJXgIrB0R804XY4gK3O5h1mqONy70YCzY2HhKZyWyMvsA8Ppy6IvmEL\n/Cca7bWyFONLwhgHQou3bKNk5h5rhrLCrJ6A9ZK6cDs9dqMa\n",
+    "iv": "3PkKcDPIVvTbGLPi\n",
+    "auth_tag": "pK6WF1z3Buq2isV872cn/g==\n",
     "version": 3,
     "cipher": "aes-256-gcm"
   }
