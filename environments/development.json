@@ -11,6 +11,19 @@
       "install": "current",
       "binary": true
     },
+    "nsd": {
+      "master": {
+        "fqdn": "ns1.e17k.test",
+        "ip_address": "172.16.0.21",
+        "contact": "hostmaster@e17k.test"
+      },
+      "slaves": {
+        "ns2.e17k.local": "172.16.0.22"
+      },
+      "zones": [
+        "e17k.test"
+      ]
+    },
     "ntp": {
       "servers": [
         "0.pool.ntp.org",
