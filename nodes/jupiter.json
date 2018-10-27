@@ -1,9 +1,9 @@
 {
-  "name": "ns1",
+  "name": "jupiter",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "ns1.e17k.com"
+      "host": "jupiter.e17k.com"
     },
     "firewall": {
       "ufw": {
@@ -42,9 +42,9 @@
     }
   },
   "automatic": {
-    "fqdn": "ns1.e17k.com",
+    "fqdn": "jupiter.e17k.com",
     "platform": "ubuntu",
-    "platform_version": "16.04"
+    "platform_version": "18.04"
   },
   "run_list": [
     "recipe[locale::default]",

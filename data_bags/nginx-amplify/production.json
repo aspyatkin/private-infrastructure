@@ -1,9 +1,9 @@
 {
   "id": "production",
-  "lyra.e17k.com": {
-    "encrypted_data": "zolWFuop+cnM2MmieIvUcX2jn/ylGgv15iq4JmsutxwZ5Z6Y4BjvoAvl40d8\nalPJoLKzbDXGhqwMIZHFN2j6\n",
-    "iv": "G7YOEhVOqZamTkYL\n",
-    "auth_tag": "3mLD2aE6b3Ao0SYCWwzvEg==\n",
+  "mercury.e17k.com": {
+    "encrypted_data": "kfiMXFzWNZGf3oc6p72vjUIgsTS9MQWRxULsqzbtFRUAxmDsD1EVJg4vLX/b\n+6lo4/O6jL7G3JwtYb9w12KU\n",
+    "iv": "WCh6NBrlB+JGdl2e\n",
+    "auth_tag": "IPKyKsHyLM3XFqfycIqyRw==\n",
     "version": 3,
     "cipher": "aes-256-gcm"
   }

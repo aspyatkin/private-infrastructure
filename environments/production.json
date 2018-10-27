@@ -14,22 +14,31 @@
     "nsd": {
       "enable_ipv6": true,
       "master": {
-        "fqdn": "ns1.e17k.com",
-        "ipv4_address": "195.201.19.234",
-        "ipv6_address": "2A01:04F8:1C0C:4BF3:0000:0000:0000:0001",
+        "bind_addresses": [
+          "159.69.14.91",
+          "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001"
+        ],
+        "fqdn": "jupiter.e17k.com",
+        "ipv4_address": "159.69.14.91",
+        "ipv6_address": "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001",
         "contact": "hostmaster@e17k.com"
       },
       "slaves": {
-        "ns2.e17k.com": {
-          "ipv4_address": "163.172.169.0",
-          "ipv6_address": "2001:0BC8:4400:2B00:0000:0000:0016:031D"
+        "saturn.e17k.com": {
+          "bind_addresses": [
+            "167.99.104.94",
+            "2604:A880:0002:00D0:0000:0000:2260:A001"
+          ],
+          "ipv4_address": "167.99.104.94",
+          "ipv6_address": "2604:A880:0002:00D0:0000:0000:2260:A001"
         }
       },
       "zones": [
         "e17k.com",
         "themis-project.com",
         "aspyatkin.com",
-        "ctf.moscow"
+        "ctf.moscow",
+        "volgactf.com"
       ]
     },
     "ntp": {

@@ -1,9 +1,9 @@
 {
-  "name": "ns2",
+  "name": "mercury",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "ns2.e17k.com"
+      "host": "mercury.e17k.com"
     },
     "firewall": {
       "ufw": {
@@ -22,15 +22,15 @@
       },
       "rules": [
         {
-          "ns_tcp": {
-            "port": 53,
+          "http": {
+            "port": 80,
             "protocol": "tcp"
           }
         },
         {
-          "ns_udp": {
-            "port": 53,
-            "protocol": "udp"
+          "https": {
+            "port": 443,
+            "protocol": "tcp"
           }
         }
       ]
@@ -39,12 +39,33 @@
       "options": {
         "pip_version": "18.0"
       }
+    },
+    "ngx": {
+      "install": "mainline",
+      "with_status": true,
+      "with_realip": true
+    },
+    "personal-website": {
+      "fqdn": "aspyatkin.com"
+    },
+    "redirect": {
+      "hosts": [
+        {
+          "fqdn": "www.aspyatkin.com",
+          "target": "aspyatkin.com",
+          "listen_ipv6": true,
+          "secure": true,
+          "permanent": true,
+          "pass_request_uri": true,
+          "ec_certificates": true
+        }
+      ]
     }
   },
   "automatic": {
-    "fqdn": "ns2.e17k.com",
+    "fqdn": "mercury.e17k.com",
     "platform": "ubuntu",
-    "platform_version": "16.04"
+    "platform_version": "18.04"
   },
   "run_list": [
     "recipe[locale::default]",
@@ -53,7 +74,12 @@
     "recipe[ntp::default]",
     "recipe[poise-python::default]",
     "recipe[latest-git::default]",
+    "recipe[latest-nodejs::default]",
     "recipe[dotfiles::default]",
-    "recipe[nsd::slave]"
+    "recipe[dhparam::default_key]",
+    "recipe[ngx::default]",
+    "recipe[nginx-amplify::default]",
+    "recipe[personal-website::default]",
+    "recipe[redirect::default]"
   ]
 }

@@ -13,12 +13,20 @@
     },
     "nsd": {
       "master": {
-        "fqdn": "ns1.e17k.test",
-        "ip_address": "172.16.0.21",
+        "bind_addresses": [
+          "172.17.0.3"
+        ],
+        "fqdn": "bravo.e17k.test",
+        "ipv4_address": "172.17.0.3",
         "contact": "hostmaster@e17k.test"
       },
       "slaves": {
-        "ns2.e17k.local": "172.16.0.22"
+        "charlie.e17k.test": {
+          "bind_addresses": [
+            "172.17.0.4"
+          ],
+          "ipv4_address": "172.17.0.4"
+        }
       },
       "zones": [
         "e17k.test"
