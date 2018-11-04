@@ -3,7 +3,7 @@
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "taurus.e17k.com"
+      "host": "taurus.srvr.name"
     },
     "firewall": {
       "ufw": {
@@ -44,7 +44,7 @@
     }
   },
   "automatic": {
-    "fqdn": "taurus.e17k.com",
+    "fqdn": "taurus.srvr.name",
     "platform": "ubuntu",
     "platform_version": "16.04"
   },

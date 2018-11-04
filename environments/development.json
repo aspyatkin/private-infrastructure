@@ -16,12 +16,12 @@
         "bind_addresses": [
           "172.17.0.3"
         ],
-        "fqdn": "bravo.e17k.test",
+        "fqdn": "bravo.srvr.test",
         "ipv4_address": "172.17.0.3",
-        "contact": "hostmaster@e17k.test"
+        "contact": "hostmaster@srvr.test"
       },
       "slaves": {
-        "charlie.e17k.test": {
+        "charlie.srvr.test": {
           "bind_addresses": [
             "172.17.0.4"
           ],
@@ -29,7 +29,7 @@
         }
       },
       "zones": [
-        "e17k.test"
+        "srvr.test"
       ]
     },
     "ntp": {

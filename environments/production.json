@@ -18,13 +18,13 @@
           "159.69.14.91",
           "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001"
         ],
-        "fqdn": "jupiter.e17k.com",
+        "fqdn": "jupiter.srvr.name",
         "ipv4_address": "159.69.14.91",
         "ipv6_address": "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001",
-        "contact": "hostmaster@e17k.com"
+        "contact": "hostmaster@srvr.name"
       },
       "slaves": {
-        "saturn.e17k.com": {
+        "saturn.srvr.name": {
           "bind_addresses": [
             "104.248.66.144",
             "2604:A880:0002:00D0:0000:0000:2263:D001"
@@ -34,6 +34,7 @@
         }
       },
       "zones": [
+        "srvr.name",
         "e17k.com",
         "themis-project.com",
         "aspyatkin.com",

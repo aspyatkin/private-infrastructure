@@ -3,7 +3,7 @@
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "mercury.e17k.com"
+      "host": "mercury.srvr.name"
     },
     "firewall": {
       "ufw": {
@@ -63,7 +63,7 @@
     }
   },
   "automatic": {
-    "fqdn": "mercury.e17k.com",
+    "fqdn": "mercury.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },

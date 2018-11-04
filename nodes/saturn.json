@@ -3,7 +3,7 @@
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "saturn.e17k.com"
+      "host": "saturn.srvr.name"
     },
     "firewall": {
       "ufw": {
@@ -42,7 +42,7 @@
     }
   },
   "automatic": {
-    "fqdn": "saturn.e17k.com",
+    "fqdn": "saturn.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },

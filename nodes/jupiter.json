@@ -3,7 +3,7 @@
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "jupiter.e17k.com"
+      "host": "jupiter.srvr.name"
     },
     "firewall": {
       "ufw": {
@@ -42,7 +42,7 @@
     }
   },
   "automatic": {
-    "fqdn": "jupiter.e17k.com",
+    "fqdn": "jupiter.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
