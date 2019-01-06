@@ -1,17 +1,17 @@
 {
-  "name": "saturn",
+  "name": "mars",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "saturn.srvr.name"
+      "host": "mars.srvr.name"
     }
   },
   "automatic": {
-    "fqdn": "saturn.srvr.name",
+    "fqdn": "mars.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
   "run_list": [
-    "recipe[private::nsd_slave]"
+    "recipe[private::personal]"
   ]
 }

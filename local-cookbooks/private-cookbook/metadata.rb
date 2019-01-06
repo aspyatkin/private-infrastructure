@@ -1,0 +1,37 @@
+name 'private'
+maintainer 'Alexander Pyatkin'
+maintainer_email 'aspyatkin@gmail.com'
+license 'MIT'
+description ''
+version '0.0.1'
+
+depends 'ntp', '~> 3.6.1'
+# depends 'locale', '~> 2.0.1'
+depends 'firewall', '~> 2.7.0'
+
+depends 'instance', '~> 2.0.1'
+depends 'secret', '~> 1.0.0'
+# depends 'redisio', '~> 2.7.2'
+# depends 'postgresql', '~> 7.1.1'
+# depends 'ngx', '~> 1.1.1'
+# depends 'git', '~> 9.0.1'
+# depends 'gogs', '~> 3.0.0'
+# depends 'cronic', '~> 2.0.0'
+# depends 'better-ssmtp', '~> 1.1.0'
+# depends 's3backup', '~> 2.0.0'
+# depends 'poise-python', '~> 1.7.0'
+
+depends 'latest-nodejs', '~> 1.6.0'
+depends 'dhparam', '~> 1.0.1'
+depends 'ngx', '~> 1.1.0'
+depends 'redirect', '~> 1.5.1'
+depends 'sockd', '~> 0.1.0'
+depends 'personal-website', '~> 2.1.0'
+depends 'nginx-amplify', '~> 1.0.0'
+depends 'ruby_rbenv', '~> 2.1.2'
+depends 'ssh-private-keys', '~> 2.0.0'
+
+# vpn
+# depends 'vpn', '~> 0.1.0'
+
+depends 'nsd', '~> 0.4.0'

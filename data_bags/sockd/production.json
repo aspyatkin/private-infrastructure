@@ -1,9 +1,9 @@
 {
   "id": "production",
-  "taurus.srvr.name": {
-    "encrypted_data": "CwPX0PD5zxtqVwMHrpeUndivEvfUM7Y9+CZzKqeWZB7MNckmTdiOWqS4aNbY\nHOxsTvm8mG3efeKZgQY9JaDwkiImPVVA7cftittU/pjRAbLO\n",
-    "iv": "nfnpHunohCJI8upM\n",
-    "auth_tag": "SFAUQFoSanAjlwbIi5+R9A==\n",
+  "mars.srvr.name": {
+    "encrypted_data": "3lcVZEukOc7VlV4ax3fXOFHTjPRbdqCJfWqH+tX/yyVFm9h4mnSnS/z4/MZF\nD8B99dnsSm2ulZfnM+xBpRtELvSB5774g9ymXjic\n",
+    "iv": "jjoAzjy3KOtWFU+y\n",
+    "auth_tag": "sFjka3ySHo6EmtGnhIEUsw==\n",
     "version": 3,
     "cipher": "aes-256-gcm"
   }

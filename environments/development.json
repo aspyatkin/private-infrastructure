@@ -1,36 +1,30 @@
 {
   "name": "development",
   "default_attributes": {
+    "apt": {
+      "compile_time_update": true
+    },
     "build-essential": {
       "compile_time": true
     },
     "dhparam": {
       "default_key_size": 2048
     },
+    "firewall": {
+      "ubuntu_iptables": true,
+      "allow_loopback": true,
+      "allow_ssh": true,
+      "allow_icmp": true,
+      "ipv6_enabled": false
+    },
     "latest-nodejs": {
       "install": "current",
       "binary": true
     },
-    "nsd": {
-      "master": {
-        "bind_addresses": [
-          "172.17.0.3"
-        ],
-        "fqdn": "bravo.srvr.test",
-        "ipv4_address": "172.17.0.3",
-        "contact": "hostmaster@srvr.test"
-      },
-      "slaves": {
-        "charlie.srvr.test": {
-          "bind_addresses": [
-            "172.17.0.4"
-          ],
-          "ipv4_address": "172.17.0.4"
-        }
-      },
-      "zones": [
-        "srvr.test"
-      ]
+    "ngx": {
+      "install": "mainline",
+      "with_status": true,
+      "with_realip": true
     },
     "ntp": {
       "servers": [
@@ -39,6 +33,39 @@
         "2.pool.ntp.org",
         "3.pool.ntp.org"
       ]
+    },
+    "private": {
+      "nsd": {
+        "master": {
+          "fqdn": "bravo.srvr.test",
+          "ipv4_address": "172.17.0.3",
+          "contact": "hostmaster@srvr.test",
+          "bind_addresses": [
+            "172.17.0.3"
+          ]
+        },
+        "slaves": {
+          "charlie.srvr.test": {
+            "bind_addresses": [
+              "172.17.0.4"
+            ],
+            "ipv4_address": "172.17.0.4"
+          }
+        },
+        "zones": [
+          "srvr.test"
+        ]
+      },
+      "personal": {
+        "develop": false,
+        "git_config": {
+          "user.name": "Alexander Pyatkin",
+          "user.email": "aspyatkin@users.noreply.github.com"
+        },
+        "fqdn": "aspyatkin.test",
+        "ruby_version": "2.4.1",
+        "bundler_version": "1.15.4"
+      }
     }
   }
 }
