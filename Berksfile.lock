@@ -19,7 +19,7 @@ DEPENDENCIES
     git: https://github.com/aspyatkin/nginx-amplify-cookbook.git
     revision: 1f11a3a5027bdacb09efb551ae6e68079be073da
     tag: v1.0.0
-  ngx (~> 1.1.0)
+  ngx (~> 1.2.0)
   ntp
   personal-website
     git: https://github.com/aspyatkin/personal-website-cookbook.git
@@ -70,17 +70,17 @@ GRAPH
   nginx-amplify (1.0.0)
     apt (>= 0.0.0)
     secret (~> 1.0.0)
-  ngx (1.1.1)
+  ngx (1.2.0)
     dhparam (~> 1.0.0)
     libmaxminddb (~> 1.0.0)
     logrotate (~> 2.2.0)
-    nginx (>= 8.1.5)
+    nginx (~> 9.0.0)
   nodejs (5.0.0)
     ark (>= 2.0.2)
     build-essential (>= 0.0.0)
   nsd (0.4.0)
     instance (~> 2.0.0)
-  ntp (3.6.1)
+  ntp (3.6.2)
   ohai (5.2.5)
   personal-website (2.1.0)
     git (>= 0.0.0)
@@ -97,13 +97,13 @@ GRAPH
   poise-python (1.7.0)
     poise (~> 2.7)
     poise-languages (~> 2.0)
-  private (0.0.1)
+  private (0.1.0)
     dhparam (~> 1.0.1)
     firewall (~> 2.7.0)
     instance (~> 2.0.1)
     latest-nodejs (~> 1.6.0)
     nginx-amplify (~> 1.0.0)
-    ngx (~> 1.1.0)
+    ngx (~> 1.2.0)
     nsd (~> 0.4.0)
     ntp (~> 3.6.1)
     personal-website (~> 2.1.0)

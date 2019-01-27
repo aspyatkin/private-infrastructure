@@ -15,11 +15,6 @@ knife[:automatic_attribute_whitelist] = %w[
 knife[:default_attribute_whitelist] = []
 knife[:normal_attribute_whitelist] = %w[
   knife_zero
-  firewall
-  poise-python
-  ngx
-  personal-website
-  redirect
 ]
 knife[:override_attribute_whitelist] = %w[
 ]
