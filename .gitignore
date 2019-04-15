@@ -3,3 +3,4 @@ opts.yaml
 .env
 clients
 cookbooks
+.DS_Store

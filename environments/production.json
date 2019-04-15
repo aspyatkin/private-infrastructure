@@ -67,6 +67,33 @@
         "fqdn": "aspyatkin.com",
         "ruby_version": "2.4.1",
         "bundler_version": "1.15.4"
+      },
+      "vpn": {
+        "lan": {
+          "fqdn": "vpn.srvr.name",
+          "port": 11194,
+          "network": "10.11.0.0/24",
+          "certificate": {
+            "country": "RU",
+            "province": "Samara",
+            "city": "Samara",
+            "org": "srvr.name",
+            "email": "aspyatkin@gmail.com",
+            "ou": "IT"
+          },
+          "openvpn": {
+            "proto": "tcp",
+            "cipher": "AES-128-CBC"
+          },
+          "clients": {
+            "aspyatkin-mbp": {
+              "ipv4_address": "10.11.0.11"
+            },
+            "aspyatkin-letsencrypt": {
+              "ipv4_address": "10.11.0.100"
+            }
+          }
+        }
       }
     }
   }
