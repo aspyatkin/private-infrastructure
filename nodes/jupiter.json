@@ -4,6 +4,39 @@
   "normal": {
     "knife_zero": {
       "host": "jupiter.srvr.name"
+    },
+    "private": {
+      "netdata": {
+        "slave": {
+          "enabled": true,
+          "stream": {
+            "name": "jupiter",
+            "destination": "51.15.42.102"
+          }
+        }
+      },
+      "ssmtp": {
+        "sender_email": "operator@srvr.work",
+        "smtp_host": "smtp.mailgun.org",
+        "smtp_port": 587,
+        "smtp_username": "operator@mg.srvr.work",
+        "smtp_enable_starttls": true,
+        "smtp_enable_ssl": false,
+        "from_line_override": true
+      },
+      "fail2ban": {
+        "enabled": true,
+        "destemail": "me@aspyatkin.com",
+        "sender": "operator@srvr.work",
+        "sendername": "Jupiter Operator",
+        "jail": {
+          "sshd": {
+            "maxretry": 5,
+            "findtime": 259200,
+            "bantime": 86400
+          }
+        }
+      }
     }
   },
   "automatic": {

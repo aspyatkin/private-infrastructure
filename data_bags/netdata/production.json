@@ -1,0 +1,17 @@
+{
+  "id": "production",
+  "basic-auth": {
+    "encrypted_data": "FYceatzy7r9KUrAfWPooBK2PKL9Yyxr9Xa7IirIM6HSAswXkWJI/Kv+J5EKG\n5X9U2jNDrrVHpxOFikDZpckZxcA=\n",
+    "iv": "W3nS5Yg+zGq6UXjQ\n",
+    "auth_tag": "PpxfIsHXF77XVKRgAlCcrQ==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  },
+  "stream": {
+    "encrypted_data": "QKiaUqGBJKj13K5vY/CGtqCrj0yd83icfJlw9dZRzUMHTD7YWAWw+CgVVszj\nz/VhPBnggp3lZxNT6yQSDOgKBSbWPcM+Cf/eJpC7/oUEp0YW/EF/hYn3VXqI\na2J9u3Wu2rYl1R9prpPEIMm4Nkjb3cygoO05krUWUelYG814HqQ/FZasukYO\nK967+4h3axJ7VvKk2SBjnesy6JCebQBvzEnnpM37+v2W7PCR6Dphm6lQLV1n\nTSOtS5GBBhjlbdwnrWN7JBrCrMxcSzdzwvFLkRiQCty9uG6cum+C2A==\n",
+    "iv": "SJWyQ+1JbxJhGDiW\n",
+    "auth_tag": "IbFKseM1k8m8npKzOta+Rg==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

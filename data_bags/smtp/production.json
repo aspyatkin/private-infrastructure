@@ -1,0 +1,10 @@
+{
+  "id": "production",
+  "password": {
+    "encrypted_data": "96IwmxR7txhSyZu3Kv9BRQ4r0ZBeZdpahPpSYE7lW2O1FxpNsxk2BIG97sYU\nThrb+dyJrO9TkliTVI3N/EKs6n3ai4rigQf1ko0A4hc=\n",
+    "iv": "Wg4uGXWLZfKqGQGl\n",
+    "auth_tag": "as6NkY06LIhfFdfNxflxZg==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

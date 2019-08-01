@@ -1,0 +1,8 @@
+server {
+  listen <%= @host %>:<%= @port %> default_server;
+  server_name _;
+
+  location /stub_status {
+    stub_status on;
+  }
+}

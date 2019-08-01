@@ -24,3 +24,11 @@ depends 'logrotate', '~> 2.2.0'
 depends 'dhparam', '~> 2.0.0'
 depends 'tls', '~> 3.2.0'
 depends 'redirect', '~> 2.1.0'
+depends 'ssmtp-lwrp', '~> 0.1.0'
+depends 'netdata', '~> 0.4.1'
+depends 'htpasswd', '~> 0.3.0'
+
+gem 'htauth'
+
+# depends 'volgactf-final', '~> 1.2.0'
+# depends 'ctf-moscow-2019-101'

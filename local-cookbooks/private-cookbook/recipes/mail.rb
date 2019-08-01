@@ -1,8 +1,10 @@
-apt_update 'update'
+apt_update 'default' do
+  action :update
+  notifies :install, 'build_essential[default]', :immediately
+end
 
-build_essential 'install' do
-  compile_time true
-  action :install
+build_essential 'default' do
+  action :nothing
 end
 
 locale 'en' do
@@ -65,46 +67,6 @@ template '/etc/fail2ban/jail.local' do
   notifies :restart, 'service[fail2ban]', :delayed
 end
 
-node_part = node['private']['nsd']
-
-opt_port = node_part['master'].fetch('port', 53)
-opt_enable_ipv6 = node_part.fetch('enable_ipv6', false)
-
-nsd_master node_part['master']['fqdn'] do
-  port opt_port
-  ipv4_address node_part['master']['ipv4_address']
-  ipv6_address node_part['master'].fetch('ipv6_address', nil)
-  contact node_part['master']['contact']
-  bind_addresses node_part['master']['bind_addresses']
-  enable_ipv6 opt_enable_ipv6
-  keys secret.get('nsd:keys', default: {}, prefix_fqdn: false)
-  slaves node_part['slaves']
-  zones node_part['zones']
-  action :install
-end
-
-protocols = %w(tcp udp)
-
-protocols.each do |proto|
-  firewall_rule "nsd_#{proto}_ipv4" do
-    port opt_port
-    source '0.0.0.0/0'
-    protocol proto.to_sym
-    command :allow
-  end
-end
-
-if opt_enable_ipv6
-  protocols.each do |proto|
-    firewall_rule "nsd_#{proto}_ipv6" do
-      port opt_port
-      source '::/0'
-      protocol proto.to_sym
-      command :allow
-    end
-  end
-end
-
 if node['private']['netdata']['slave']['enabled']
   netdata_install 'default' do
     install_method 'source'
@@ -113,19 +75,6 @@ if node['private']['netdata']['slave']['enabled']
     git_source_directory '/opt/netdata'
     autoupdate true
     update true
-  end
-
-  nsd_stats_command = '/usr/sbin/nsd-control stats_noreset'
-
-  template '/etc/sudoers.d/netdata' do
-    cookbook 'private'
-    source 'netdata/sudoers.erb'
-    variables(
-      user: 'netdata',
-      command: nsd_stats_command
-    )
-    mode 0o644
-    action :create
   end
 
   netdata_config 'global' do
@@ -145,18 +94,5 @@ if node['private']['netdata']['slave']['enabled']
       'api key' => secret.get("netdata:stream:api_key:#{node['private']['netdata']['slave']['stream']['name']}", required: node['private']['netdata']['slave']['enabled'], prefix_fqdn: false)
     )
   end
-
-  netdata_python_plugin 'nsd' do
-    owner 'netdata'
-    group 'netdata'
-    global_configuration(
-      'retries' => 3,
-      'update_every' => 30
-    )
-    jobs(
-      'local' => {
-        'command' => "sudo #{nsd_stats_command}"
-      }
-    )
-  end
 end
+

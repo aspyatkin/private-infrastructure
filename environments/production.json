@@ -56,11 +56,10 @@
         },
         "zones": [
           "srvr.name",
-          "e17k.com",
-          "themis-project.com",
           "aspyatkin.com",
           "ctf.moscow",
-          "volgactf.com"
+          "volgactf.com",
+          "pyatkin.ch"
         ]
       },
       "personal": {
@@ -91,8 +90,42 @@
             },
             "aspyatkin-letsencrypt": {
               "ipv4_address": "10.11.0.100"
+            },
+            "volgactf-final-test-master": {
+              "ipv4_address": "10.11.0.101"
+            },
+            "ctf-moscow-2019-master": {
+              "ipv4_address": "10.11.0.102"
             }
           }
+        }
+      },
+      "netdata": {
+        "master": {
+          "history": 7200,
+          "stream": {
+            "mars": {
+              "origin": "95.216.208.183",
+              "history": 7200
+            },
+            "venus": {
+              "origin": "163.172.180.127",
+              "history": 7200
+            },
+            "jupiter": {
+              "origin": "159.69.14.91",
+              "history": 7200
+            },
+            "saturn": {
+              "origin": "104.248.66.144",
+              "history": 7200
+            }
+          }
+        }
+      },
+      "monitor": {
+        "netdata": {
+          "fqdn": "netdata.srvr.name"
         }
       }
     }

@@ -6,6 +6,10 @@ DEPENDENCIES
     revision: e68bfb3108a92d6b3b19cfd1837e6629efad881b
     tag: v2.0.0
   locale (~> 2.0.1)
+  netdata
+    git: https://github.com/jmadureira/netdata-cookbook.git
+    revision: 7858ca3cedac092db212f7497891544c6f5fc200
+    branch: 7858ca3cedac092db212f7497891544c6f5fc200
   ntp
   personal-website
     git: https://github.com/aspyatkin/personal-website-cookbook.git
@@ -15,8 +19,13 @@ DEPENDENCIES
   private
     path: local-cookbooks/private-cookbook
   sockd (~> 0.1.0)
+  ssmtp-lwrp
+    git: https://github.com/aspyatkin/ssmtp-lwrp-cookbook.git
+    revision: 8a1409fedf17e23277ec078bbff54fb76d9c44c7
+    tag: v0.1.0
 
 GRAPH
+  apt (6.1.4)
   ark (4.0.0)
     build-essential (>= 0.0.0)
     seven_zip (>= 0.0.0)
@@ -24,19 +33,25 @@ GRAPH
     mingw (>= 1.1)
     seven_zip (>= 0.0.0)
   chef-sugar (5.0.1)
+  compat_resource (12.19.1)
   dhparam (2.0.0)
   firewall (2.7.0)
     chef-sugar (>= 0.0.0)
   git (9.0.1)
     build-essential (>= 5.0.0)
+  htpasswd (0.3.0)
+    poise-python (>= 0.0.0)
   instance (2.0.1)
   latest-nodejs (2.0.0)
     nodejs (~> 6.0.0)
-  line (2.1.1)
+  line (2.3.3)
   locale (2.0.1)
   logrotate (2.2.0)
   mingw (2.1.0)
     seven_zip (>= 0.0.0)
+  netdata (0.4.1)
+    apt (< 7.0.0)
+    yum-epel (< 3.0.0)
   ngx (2.1.1)
     ohai (~> 5.2.5)
   ngx-modules (1.0.0)
@@ -66,9 +81,11 @@ GRAPH
   private (1.0.0)
     dhparam (~> 2.0.0)
     firewall (~> 2.7.0)
+    htpasswd (~> 0.3.0)
     instance (~> 2.0.1)
     latest-nodejs (~> 2.0.0)
     logrotate (~> 2.2.0)
+    netdata (~> 0.4.1)
     ngx (~> 2.1.1)
     ngx-modules (~> 1.0.0)
     nsd (~> 0.4.0)
@@ -79,15 +96,16 @@ GRAPH
     secret (~> 1.0.0)
     sockd (~> 0.1.1)
     ssh-private-keys (~> 2.0.0)
+    ssmtp-lwrp (~> 0.1.0)
     tls (~> 3.2.0)
     vpn (~> 0.2.2)
-  redirect (2.1.0)
+  redirect (2.1.1)
     ngx (>= 2.1.0)
     tls (>= 3.2.0)
-  ruby_rbenv (2.1.2)
+  ruby_rbenv (2.1.3)
   secret (1.0.0)
     instance (~> 2.0.0)
-  seven_zip (3.1.0)
+  seven_zip (3.1.1)
     windows (>= 0.0.0)
   sockd (0.1.1)
     ark (~> 4.0.0)
@@ -95,8 +113,11 @@ GRAPH
     secret (~> 1.0.0)
   ssh-private-keys (2.0.1)
   ssh_known_hosts (4.0.0)
+  ssmtp-lwrp (0.1.0)
   tls (3.2.0)
-  vpn (0.2.2)
+  vpn (0.2.3)
     firewall (~> 2.7.0)
-    line (~> 2.1.1)
-  windows (5.3.0)
+    line (>= 2.3.0)
+  windows (6.0.0)
+  yum-epel (2.1.2)
+    compat_resource (>= 12.16.3)

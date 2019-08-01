@@ -1,16 +1,16 @@
 {
-  "name": "saturn",
+  "name": "venus",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "saturn.srvr.name"
+      "host": "venus.srvr.name"
     },
     "private": {
       "netdata": {
         "slave": {
           "enabled": true,
           "stream": {
-            "name": "saturn",
+            "name": "venus",
             "destination": "51.15.42.102"
           }
         }
@@ -28,7 +28,7 @@
         "enabled": true,
         "destemail": "me@aspyatkin.com",
         "sender": "operator@srvr.work",
-        "sendername": "Saturn Operator",
+        "sendername": "Venus Operator",
         "jail": {
           "sshd": {
             "maxretry": 5,
@@ -40,11 +40,11 @@
     }
   },
   "automatic": {
-    "fqdn": "saturn.srvr.name",
+    "fqdn": "venus.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
   "run_list": [
-    "recipe[private::nsd_slave]"
+    "recipe[private::mail]"
   ]
 }

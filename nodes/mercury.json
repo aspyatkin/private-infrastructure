@@ -1,20 +1,11 @@
 {
-  "name": "saturn",
+  "name": "mercury",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "saturn.srvr.name"
+      "host": "mercury.srvr.name"
     },
     "private": {
-      "netdata": {
-        "slave": {
-          "enabled": true,
-          "stream": {
-            "name": "saturn",
-            "destination": "51.15.42.102"
-          }
-        }
-      },
       "ssmtp": {
         "sender_email": "operator@srvr.work",
         "smtp_host": "smtp.mailgun.org",
@@ -28,7 +19,7 @@
         "enabled": true,
         "destemail": "me@aspyatkin.com",
         "sender": "operator@srvr.work",
-        "sendername": "Saturn Operator",
+        "sendername": "Mercury Operator",
         "jail": {
           "sshd": {
             "maxretry": 5,
@@ -40,11 +31,11 @@
     }
   },
   "automatic": {
-    "fqdn": "saturn.srvr.name",
+    "fqdn": "mercury.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
   "run_list": [
-    "recipe[private::nsd_slave]"
+    "recipe[private::monitor]"
   ]
 }

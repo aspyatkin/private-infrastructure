@@ -69,6 +69,8 @@ GEM
     faraday (0.15.3)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.25)
+    ffi-libarchive (0.4.10)
+      ffi (~> 1.0)
     ffi-yajl (2.3.1)
       libyajl2 (~> 1.2)
     fuzzyurl (0.9.0)
@@ -178,9 +180,10 @@ DEPENDENCIES
   berkshelf
   chef
   dotenv
+  ffi-libarchive
   knife-zero
   rbnacl (>= 3.2, < 5.0)
   rbnacl-libsodium
 
 BUNDLED WITH
-   1.16.6
+   1.17.2
