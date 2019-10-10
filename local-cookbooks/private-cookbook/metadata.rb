@@ -30,5 +30,5 @@ depends 'htpasswd', '~> 0.3.0'
 
 gem 'htauth'
 
-# depends 'volgactf-final', '~> 1.2.0'
+# depends 'volgactf-final', '~> 1.4.2'
 # depends 'ctf-moscow-2019-101'

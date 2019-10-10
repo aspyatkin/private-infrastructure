@@ -8,7 +8,7 @@
     "private": {
       "netdata": {
         "slave": {
-          "enabled": true,
+          "enabled": false,
           "stream": {
             "name": "jupiter",
             "destination": "51.15.42.102"

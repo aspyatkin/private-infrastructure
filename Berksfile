@@ -18,4 +18,4 @@ github_cookbook 'ssmtp-lwrp', 'aspyatkin/ssmtp-lwrp-cookbook', tag: 'v0.1.0'
 local_cookbook 'private', './local-cookbooks/private-cookbook'
 
 # github_cookbook 'ctf-moscow-2019-101', 'VolgaCTF/ctf-moscow-2019-101-cookbook', tag: 'v1.0.0'
-# github_cookbook 'volgactf-final', 'VolgaCTF/volgactf-final-cookbook', tag: 'v1.2.0'
+# github_cookbook 'volgactf-final', 'VolgaCTF/volgactf-final-cookbook', tag: 'v1.4.2'
