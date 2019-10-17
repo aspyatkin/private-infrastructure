@@ -64,8 +64,8 @@
       },
       "personal": {
         "fqdn": "aspyatkin.com",
-        "ruby_version": "2.4.1",
-        "bundler_version": "1.15.4"
+        "ruby_version": "2.6.5",
+        "bundler_version": "2.0.2"
       },
       "vpn": {
         "lan": {
@@ -90,15 +90,6 @@
             },
             "aspyatkin-letsencrypt": {
               "ipv4_address": "10.11.0.100"
-            },
-            "volgactf-final-test-master": {
-              "ipv4_address": "10.11.0.101"
-            },
-            "ctf-moscow-2019-master": {
-              "ipv4_address": "10.11.0.102"
-            },
-            "volgactf-2019-final-master": {
-              "ipv4_address": "10.11.0.103"
             }
           }
         }
@@ -129,14 +120,6 @@
       "monitor": {
         "netdata": {
           "fqdn": "netdata.srvr.name"
-        }
-      },
-      "volgactf": {
-        "final": {
-          "fqdn": "live.volgactf.ru",
-          "ipv4_address": "10.11.0.103",
-          "secure": true,
-          "oscp_stapling": true
         }
       }
     }
