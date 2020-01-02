@@ -1,16 +1,16 @@
 {
-  "name": "mars",
+  "name": "neptune",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "mars.srvr.name"
+      "host": "neptune.srvr.name"
     },
     "private": {
       "netdata": {
         "slave": {
           "enabled": false,
           "stream": {
-            "name": "mars",
+            "name": "neptune",
             "destination": "51.15.42.102"
           }
         }
@@ -26,9 +26,9 @@
       },
       "fail2ban": {
         "enabled": true,
-        "destemail": "me@aspyatkin.com",
+        "destemail": "aspyatkin@gmail.com",
         "sender": "operator@srvr.work",
-        "sendername": "Mars Operator",
+        "sendername": "Neptune Operator",
         "jail": {
           "sshd": {
             "maxretry": 5,
@@ -40,11 +40,11 @@
     }
   },
   "automatic": {
-    "fqdn": "mars.srvr.name",
+    "fqdn": "neptune.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
   "run_list": [
-    "recipe[private::personal]"
+    "recipe[private::nsd_slave]"
   ]
 }

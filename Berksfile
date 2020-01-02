@@ -12,7 +12,6 @@ cookbook 'sockd', '~> 0.1.0'
 
 github_cookbook 'netdata', 'jmadureira/netdata-cookbook', branch: '7858ca3cedac092db212f7497891544c6f5fc200'
 github_cookbook 'personal-website', 'aspyatkin/personal-website-cookbook', tag: 'v2.2.0'
-github_cookbook 'latest-nodejs', 'aspyatkin/latest-nodejs-cookbook', tag: 'v2.0.0'
 github_cookbook 'ssmtp-lwrp', 'aspyatkin/ssmtp-lwrp-cookbook', tag: 'v0.1.0'
 
 local_cookbook 'private', './local-cookbooks/private-cookbook'

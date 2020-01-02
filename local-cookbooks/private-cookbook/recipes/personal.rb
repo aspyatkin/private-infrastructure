@@ -1,5 +1,14 @@
 require 'json'
 
+{
+  'net.ipv4.ip_forward' => 1
+}.each do |sysctl_key, sysctl_value|
+  sysctl sysctl_key do
+    value sysctl_value
+    action :apply
+  end
+end
+
 apt_update 'default' do
   action :update
   notifies :install, 'build_essential[default]', :immediately
@@ -74,11 +83,11 @@ template '/etc/fail2ban/jail.local' do
   notifies :restart, 'service[fail2ban]', :delayed
 end
 
-include_recipe 'latest-nodejs::default'
+include_recipe 'nodejs::nodejs_from_binary'
 
 ngx_http_ssl_module 'default' do
-  openssl_version '1.1.1b'
-  openssl_checksum '5c557b023230413dfb0756f3137a13e6d726838ccd1430888ad15bfb2b43ea4b'
+  openssl_version '1.1.1d'
+  openssl_checksum '1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2'
   action :add
 end
 
@@ -93,8 +102,8 @@ end
 opt_enable_ipv6 = node['firewall']['ipv6_enabled']
 
 nginx_install 'default' do
-  version '1.15.11'
-  checksum 'd5eb2685e2ebe8a9d048b07222ffdab50e6ff6245919eebc2482c1f388e3f8ad'
+  version '1.17.5'
+  checksum '63ee35e15a75af028ffa1f995e2b9c120b59ef5f1b61a23b8a4c33c262fc10c3'
   with_ipv6 opt_enable_ipv6
   with_threads false
   with_debug false
@@ -272,14 +281,11 @@ node['private']['vpn'].each do |server_name, server_data|
     port server_data['port']
     network server_data['network']
     openvpn JSON.parse(server_data['openvpn'].to_json, symbolize_names: true)
+    manage_firewall_rules server_data.fetch('manage_firewall_rules', false)
+    redirect_gateway server_data.fetch('redirect_gateway', false)
+    bypass_dhcp server_data.fetch('bypass_dhcp', true)
+    bypass_dns server_data.fetch('bypass_dns', true)
     action :setup
-  end
-
-  firewall_rule "openvpn-#{server_name}" do
-    port server_data['port']
-    source '0.0.0.0/0'
-    protocol server_data['openvpn']['proto'].to_sym
-    command :allow
   end
 
   server_data['clients'].each do |client_name, client_data|

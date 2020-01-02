@@ -14,9 +14,13 @@
       "allow_icmp": true,
       "ipv6_enabled": true
     },
-    "latest-nodejs": {
-      "install": "current",
-      "binary": true
+    "nodejs": {
+      "version": "12.13.0",
+      "binary": {
+        "checksum": {
+          "linux_x64": "c69671c89d0faa47b64bd5f37079e4480852857a9a9366ee86cdd8bc9670074a"
+        }
+      }
     },
     "ngx": {
       "install": "mainline",
@@ -52,6 +56,14 @@
             ],
             "ipv4_address": "104.248.66.144",
             "ipv6_address": "2604:A880:0002:00D0:0000:0000:2263:D001"
+          },
+          "neptune.srvr.name": {
+            "bind_addresses": [
+              "77.73.69.85",
+              "2A00:1838:0037:03CB:0000:0000:0000:6D32"
+            ],
+            "ipv4_address": "77.73.69.85",
+            "ipv6_address": "2A00:1838:0037:03CB:0000:0000:0000:6D32"
           }
         },
         "zones": [
@@ -61,38 +73,6 @@
           "volgactf.com",
           "pyatkin.ch"
         ]
-      },
-      "personal": {
-        "fqdn": "aspyatkin.com",
-        "ruby_version": "2.6.5",
-        "bundler_version": "2.0.2"
-      },
-      "vpn": {
-        "lan": {
-          "fqdn": "vpn.srvr.name",
-          "port": 11194,
-          "network": "10.11.0.0/24",
-          "certificate": {
-            "country": "RU",
-            "province": "Samara",
-            "city": "Samara",
-            "org": "srvr.name",
-            "email": "aspyatkin@gmail.com",
-            "ou": "IT"
-          },
-          "openvpn": {
-            "proto": "tcp",
-            "cipher": "AES-128-CBC"
-          },
-          "clients": {
-            "aspyatkin-mbp": {
-              "ipv4_address": "10.11.0.11"
-            },
-            "aspyatkin-letsencrypt": {
-              "ipv4_address": "10.11.0.100"
-            }
-          }
-        }
       },
       "netdata": {
         "master": {

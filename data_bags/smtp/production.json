@@ -1,9 +1,9 @@
 {
   "id": "production",
   "password": {
-    "encrypted_data": "96IwmxR7txhSyZu3Kv9BRQ4r0ZBeZdpahPpSYE7lW2O1FxpNsxk2BIG97sYU\nThrb+dyJrO9TkliTVI3N/EKs6n3ai4rigQf1ko0A4hc=\n",
-    "iv": "Wg4uGXWLZfKqGQGl\n",
-    "auth_tag": "as6NkY06LIhfFdfNxflxZg==\n",
+    "encrypted_data": "uDOZIvrTpL8E2BMpiQZh/yrXB9a/6V/aa/S+V/yUFF6kDXISV8s0VM9ilfpb\ngrtuWVz+2NNqXDf7ezOFw3/DVzwl6D9b9VnxQ+u52lE=\n",
+    "iv": "G3s9gAJDclyYpMDs\n",
+    "auth_tag": "Hjq2TTm2aViH5T+t+8AGwA==\n",
     "version": 3,
     "cipher": "aes-256-gcm"
   }

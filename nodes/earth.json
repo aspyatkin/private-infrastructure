@@ -1,16 +1,21 @@
 {
-  "name": "venus",
+  "name": "earth",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "venus.srvr.name"
+      "host": "earth.srvr.name"
     },
     "private": {
+      "personal": {
+        "fqdn": "aspyatkin.com",
+        "ruby_version": "2.6.5",
+        "bundler_version": "2.0.2"
+      },
       "fail2ban": {
         "enabled": true,
         "destemail": "aspyatkin@gmail.com",
         "sender": "operator@srvr.work",
-        "sendername": "Venus Operator",
+        "sendername": "Earth Operator",
         "jail": {
           "sshd": {
             "maxretry": 5,
@@ -23,7 +28,7 @@
         "slave": {
           "enabled": false,
           "stream": {
-            "name": "venus",
+            "name": "earth",
             "destination": "undefined"
           }
         }
@@ -38,37 +43,11 @@
         "from_line_override": true
       },
       "vpn": {
-        "pan": {
-          "fqdn": "pan.srvr.name",
-          "port": 1337,
-          "manage_firewall_rules": true,
-          "network": "10.22.0.0/24",
-          "certificate": {
-            "country": "RU",
-            "province": "Samara",
-            "city": "Samara",
-            "org": "srvr.name",
-            "email": "aspyatkin@gmail.com",
-            "ou": "IT"
-          },
-          "openvpn": {
-            "proto": "tcp",
-            "cipher": "AES-128-CBC"
-          },
-          "clients": {
-            "aspyatkin-mbp": {
-              "ipv4_address": "10.22.0.11"
-            },
-            "aspyatkin-letsencrypt": {
-              "ipv4_address": "10.22.0.100"
-            }
-          }
-        },
         "gateway": {
-          "fqdn": "gateway1.srvr.name",
+          "fqdn": "gateway2.srvr.name",
           "port": 1194,
           "manage_firewall_rules": true,
-          "network": "10.21.0.0/24",
+          "network": "10.23.0.0/24",
           "redirect_gateway": true,
           "certificate": {
             "country": "RU",
@@ -84,7 +63,7 @@
           },
           "clients": {
             "aspyatkin-mbp": {
-              "ipv4_address": "10.21.0.11"
+              "ipv4_address": "10.23.0.11"
             }
           }
         }
@@ -92,11 +71,11 @@
     }
   },
   "automatic": {
-    "fqdn": "venus.srvr.name",
+    "fqdn": "earth.srvr.name",
     "platform": "ubuntu",
     "platform_version": "18.04"
   },
   "run_list": [
-    "recipe[private::proxy]"
+    "recipe[private::personal]"
   ]
 }
