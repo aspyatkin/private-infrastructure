@@ -33,8 +33,8 @@ action :install do
     version new_resource.bundler_version
   end
 
-  execute 'Fix permissions on bundle cache dir' do
-    command "chown -R #{new_resource.user}:#{new_resource.group} #{new_resource.user_home}/.bundle"
-    action :run
-  end
+  # execute 'Fix permissions on bundle cache dir' do
+  #   command "chown -R #{new_resource.user}:#{new_resource.group} #{new_resource.user_home}/.bundle"
+  #   action :run
+  # end
 end

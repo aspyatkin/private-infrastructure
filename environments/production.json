@@ -23,9 +23,8 @@
       }
     },
     "ngx": {
-      "install": "mainline",
-      "with_status": true,
-      "with_realip": true
+      "version": "1.19.0",
+      "checksum": "44a616171fcd7d7ad7c6af3e6f3ad0879b54db5a5d21be874cd458b5691e36c8"
     },
     "ntp": {
       "servers": [
@@ -35,35 +34,39 @@
         "3.pool.ntp.org"
       ]
     },
+    "openssl": {
+      "version": "1.1.1g",
+      "checksum": "ddb04774f1e32f0c49751e21b67216ac87852ceb056b75209af2443400636d46"
+    },
     "private": {
       "nsd": {
         "enable_ipv6": true,
         "master": {
           "bind_addresses": [
-            "159.69.14.91",
-            "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001"
+            "49.12.109.96",
+            "2A01:04F8:0C17:AC4F:0000:0000:0000:0001"
           ],
           "fqdn": "jupiter.srvr.name",
-          "ipv4_address": "159.69.14.91",
-          "ipv6_address": "2A01:04F8:1C1C:1A4C:0000:0000:0000:0001",
+          "ipv4_address": "49.12.109.96",
+          "ipv6_address": "2A01:04F8:0C17:AC4F:0000:0000:0000:0001",
           "contact": "hostmaster@srvr.name"
         },
         "slaves": {
           "saturn.srvr.name": {
             "bind_addresses": [
-              "104.248.66.144",
-              "2604:A880:0002:00D0:0000:0000:2263:D001"
+              "157.245.86.160",
+              "2604:A880:0400:00D0:0000:0000:080D:7001"
             ],
-            "ipv4_address": "104.248.66.144",
-            "ipv6_address": "2604:A880:0002:00D0:0000:0000:2263:D001"
+            "ipv4_address": "157.245.86.160",
+            "ipv6_address": "2604:A880:0400:00D0:0000:0000:080D:7001"
           },
-          "neptune.srvr.name": {
+          "uranus.srvr.name": {
             "bind_addresses": [
-              "77.73.69.85",
-              "2A00:1838:0037:03CB:0000:0000:0000:6D32"
+              "188.93.210.176",
+              "2A00:F940:0002:0004:0002:0000:0000:11A7"
             ],
-            "ipv4_address": "77.73.69.85",
-            "ipv6_address": "2A00:1838:0037:03CB:0000:0000:0000:6D32"
+            "ipv4_address": "188.93.210.176",
+            "ipv6_address": "2A00:F940:0002:0004:0002:0000:0000:11A7"
           }
         },
         "zones": [
@@ -71,31 +74,9 @@
           "aspyatkin.com",
           "ctf.moscow",
           "volgactf.com",
-          "pyatkin.ch"
+          "pyatkin.ch",
+          "volgactf.org"
         ]
-      },
-      "netdata": {
-        "master": {
-          "history": 7200,
-          "stream": {
-            "mars": {
-              "origin": "95.216.208.183",
-              "history": 7200
-            },
-            "venus": {
-              "origin": "163.172.180.127",
-              "history": 7200
-            },
-            "jupiter": {
-              "origin": "159.69.14.91",
-              "history": 7200
-            },
-            "saturn": {
-              "origin": "104.248.66.144",
-              "history": 7200
-            }
-          }
-        }
       },
       "monitor": {
         "netdata": {

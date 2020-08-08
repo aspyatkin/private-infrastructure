@@ -1,0 +1,10 @@
+{
+  "id": "production",
+  "mars.srvr.name": {
+    "encrypted_data": "bTGbFaSsrGCLD1FvkaS2mHITCBwYrYMap0IMDT6HDqHbZDqcikRU7PfhAKMF\n/ZVCYnXutE3c4co2HkS8bJ0Ck5fukhQr2vieC1t3V/ojn8Kf2D59u3qnr83o\nwEZWUzseLByGLQfPbp+KpX5xGaokIb4aTa6l5bE2i7aCUIcSdLZqSq59oAXT\nqXEWPfgcM9GeM54tdDafAQMX89yDWR8Mpvt8breTWaRISLatx2wpSDbmMB18\nK5vEj83xBnUJa0wc9ofHk7+dUI6gis341IjDmp8Bc9bxzGOqnpdFXMCObmLf\nNLB4/x1q0VYzgIUJL13D/c5ThMiMRDj0ST+XzLzIJzyOqjW4skg143/WzilO\nzWn0q91B/qBa0y8HJlfEu6CdH5olyQ6A2DSW+/T+9xAfPQ8Cd+sTjknKPHBi\nWQKC3qFJ5RnGkVCgg+bQfyyA1xQdsD0jxK23hmCP4AymtULrCjC3q2L5fdTD\nm2Llul+xpB+NYn0tG+1EhbnuSLC0zhXT/0zBReavaApUYau/c7OH0eNbbDQm\nb/zf4x1pGFJJJRktVQa3a3hrnropzFLtjWthNlEiBLdNMGav1K8vyh9GFhZ5\nxVhOsJws+pp8bRjHrruV8fO+l+eeBX5W4cGJiJt7mVDUGTf14MXqjt1ogxSw\nHhmW9AHsodJ47xN/6someSKvOcoK7u6JL0Hj+ZRp19P3J1Jag32q1bF+w1DI\nIVsxnoq/v5D+Npt97x/fJ93dIEpfaE4QiVGLE/xguzg5Apfd1pMGA3u0C+iY\nLlrjeCQMVn8ZhC3hpuRz14KNuzulX6ZcvNJCyscR1owHybetVYxMw61Qjd82\nHOapp2/oVe/FVACzXnndoEWV8h1KV0wmzAxFPsAqedK9P4o4ztEn6oN5w+Cn\n0lonfBwprtCc4TZS3OtjbD6vPLbN8AmzJE5AMxrjP4FBlSyxzdyh7661LR0z\nJGxBS7TTECaJuIaF2wGxJiSYJo3HVzzymYXUryvuO3wTBwb9PKTxIPA5GaOG\nUFFAPL4pKEt9Pdf2ch6BnMia8O164MNWnp9axFZhrSnmu/pYJJYqbcZ6FbwK\nnpJBxZTybgnt1eF7dIofQO5THIHZMvwwPffyK4TzKuHSbIs3h0LELj6KcsHc\nj1z9i+oJ1B1oyk2qF5HvfZpxGT66XySuY9tJRD15I1caq8iqczn37UdAXTDw\nsEs4zVGiFsDj+m5Mh50137RWZO3hbBzvFkO0dxPvV8ynhs3Ru7qXP4gKU7iH\nDr93S2gVYE9fKOffch0VNss3Zh4I7g==\n",
+    "iv": "kIvI1lkcbRHcfBuF\n",
+    "auth_tag": "kN40nd4p4znnFXOii+MrZg==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

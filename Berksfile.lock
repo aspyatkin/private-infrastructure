@@ -1,26 +1,35 @@
 DEPENDENCIES
   build-essential
+  cronic
+    git: https://github.com/aspyatkin/cronic-cookbook.git
+    revision: a6bea4766c753eaa52cb28260f608d4536e16e1a
+    tag: v2.0.1
   git (~> 9.0.0)
   locale (~> 2.0.1)
   netdata
     git: https://github.com/jmadureira/netdata-cookbook.git
-    revision: 7858ca3cedac092db212f7497891544c6f5fc200
-    branch: 7858ca3cedac092db212f7497891544c6f5fc200
+    revision: 336d91d15098d6240d2861fb992be5f52a318005
+    branch: 336d91d15098d6240d2861fb992be5f52a318005
   ntp
   personal-website
     git: https://github.com/aspyatkin/personal-website-cookbook.git
-    revision: e649c5d50dd385b5a9ce791e5ea6fb1806eb5294
-    tag: v2.2.0
+    revision: 0e91025b200a0fcb394840be0aec01dea6644e3d
+    tag: v2.3.0
   poise-python (= 1.7.0)
   private
     path: local-cookbooks/private-cookbook
   sockd (~> 0.1.0)
   ssmtp-lwrp
     git: https://github.com/aspyatkin/ssmtp-lwrp-cookbook.git
-    revision: 8a1409fedf17e23277ec078bbff54fb76d9c44c7
-    tag: v0.1.0
+    revision: c178f6c1218ea45c6bf37b06ecf13bd54716e4fa
+    tag: v0.2.0
+  volgactf-qualifier
+    git: https://github.com/VolgaCTF/volgactf-qualifier-cookbook.git
+    revision: a33925db48d0d6b049f5d5cca1e5a4020720611a
+    tag: v2.0.0
 
 GRAPH
+  agit (0.1.2)
   apt (6.1.4)
   ark (4.0.0)
     build-essential (>= 0.0.0)
@@ -30,6 +39,7 @@ GRAPH
     seven_zip (>= 0.0.0)
   chef-sugar (5.1.8)
   compat_resource (12.19.1)
+  cronic (2.0.1)
   dhparam (2.0.0)
   firewall (2.7.0)
     chef-sugar (>= 0.0.0)
@@ -38,31 +48,32 @@ GRAPH
   htpasswd (0.3.0)
     poise-python (>= 0.0.0)
   instance (2.0.1)
-  line (2.6.0)
+  line (2.9.0)
   locale (2.0.1)
-  logrotate (2.2.2)
-  mingw (2.1.0)
+  logrotate (2.2.3)
+  mingw (2.1.1)
     seven_zip (>= 0.0.0)
   netdata (0.4.1)
     apt (< 7.0.0)
     yum-epel (< 3.0.0)
-  ngx (2.1.2)
+  ngx (2.2.0)
     ohai (~> 5.2.5)
-  ngx-modules (1.2.0)
-    ngx (>= 2.1.0)
+  ngx-modules (1.3.0)
+    ngx (>= 2.2.0)
   nodejs (6.0.0)
     ark (>= 2.0.2)
     build-essential (>= 5.0)
-  nsd (0.4.0)
-    instance (~> 2.0.0)
+  nsd (0.4.1)
   ntp (3.6.2)
   ohai (5.2.5)
-  personal-website (2.2.0)
+  personal-website (2.3.0)
     git (>= 0.0.0)
     ngx (>= 2.1.0)
-    ruby_rbenv (~> 2.1.2)
+    ruby_rbenv (>= 2.4.0)
     ssh_known_hosts (~> 4.0.0)
     tls (>= 3.2.0)
+  php (7.0.0)
+    yum-epel (>= 0.0.0)
   poise (2.8.2)
   poise-archive (1.5.0)
     poise (~> 2.6)
@@ -72,31 +83,37 @@ GRAPH
   poise-python (1.7.0)
     poise (~> 2.7)
     poise-languages (~> 2.0)
+  postgresql (7.1.9)
   private (1.0.0)
+    ark (~> 4.0.0)
+    cronic (~> 2.0.1)
     dhparam (~> 2.0.0)
     firewall (~> 2.7.0)
     htpasswd (~> 0.3.0)
     instance (~> 2.0.1)
     logrotate (~> 2.2.0)
     netdata (~> 0.4.1)
-    ngx (~> 2.1.2)
-    ngx-modules (~> 1.2.0)
+    ngx (~> 2.2.0)
+    ngx-modules (~> 1.3.0)
     nodejs (~> 6.0.0)
-    nsd (~> 0.4.0)
+    nsd (~> 0.4.1)
     ntp (~> 3.6.2)
-    personal-website (~> 2.2.0)
+    personal-website (~> 2.3.0)
+    php (~> 7.0.0)
+    postgresql (~> 7.1.5)
     redirect (~> 2.1.0)
-    ruby_rbenv (~> 2.1.2)
+    ruby_rbenv (>= 2.5.0)
     secret (~> 1.0.0)
     sockd (~> 0.1.1)
     ssh-private-keys (~> 2.0.0)
-    ssmtp-lwrp (~> 0.1.0)
+    ssmtp-lwrp (~> 0.2.0)
     tls (~> 3.2.0)
-    vpn (~> 0.3.0)
+    volgactf-qualifier (~> 2.0.0)
+    vpn (~> 0.4.0)
   redirect (2.1.1)
     ngx (>= 2.1.0)
     tls (>= 3.2.0)
-  ruby_rbenv (2.1.3)
+  ruby_rbenv (2.5.0)
   secret (1.0.0)
     instance (~> 2.0.0)
   seven_zip (3.1.2)
@@ -107,11 +124,17 @@ GRAPH
     secret (~> 1.0.0)
   ssh-private-keys (2.0.1)
   ssh_known_hosts (4.0.0)
-  ssmtp-lwrp (0.1.0)
+  ssmtp-lwrp (0.2.0)
   tls (3.2.0)
-  vpn (0.3.0)
-    firewall (~> 2.7.0)
+  volgactf-qualifier (2.0.0)
+    agit (~> 0.1.2)
+    instance (~> 2.0.1)
+    ngx (>= 0.0.0)
+    nodejs (~> 6.0.0)
+    tls (~> 3.2.0)
+  vpn (0.4.0)
+    firewall (>= 2.7.0)
     line (>= 2.5.0)
-  windows (6.0.1)
+  windows (7.0.0)
   yum-epel (2.1.2)
     compat_resource (>= 12.16.3)

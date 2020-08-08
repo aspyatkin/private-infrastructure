@@ -1,0 +1,10 @@
+{
+  "id": "production",
+  "mercury.srvr.name": {
+    "encrypted_data": "dzP2HOedfATUtSHdiccCa/OVmIeHHqeZSSbevmQ0fWBZAS70L+t/XlH3JbDl\nG2+1d153Mm8+D+EngHhK6L+VEsSCc/NpgBmLWb4bP+WNWg==\n",
+    "iv": "GUWv70kSmjPiRaVd\n",
+    "auth_tag": "oIQ7PXTo3PXOnCmJc2VoGQ==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

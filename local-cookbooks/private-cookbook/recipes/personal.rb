@@ -18,6 +18,11 @@ build_essential 'default' do
   action :nothing
 end
 
+timezone 'UTC' do
+  timezone 'Etc/UTC'
+  action :set
+end
+
 locale 'en' do
   lang 'en_US.utf8'
   lc_all 'en_US.utf8'
@@ -43,6 +48,16 @@ node.default['firewall']['iptables']['defaults'][:ruleset] = {
 }
 include_recipe 'firewall::default'
 
+package 'cron'
+
+service 'cron' do
+  action [:enable, :start]
+end
+
+cronic 'default' do
+  action :install
+end
+
 opt = node['private']
 secret = ::ChefCookbook::Secret::Helper.new(node)
 
@@ -55,6 +70,7 @@ ssmtp 'default' do
   smtp_enable_starttls opt['ssmtp']['smtp_enable_starttls']
   smtp_enable_ssl opt['ssmtp']['smtp_enable_ssl']
   from_line_override opt['ssmtp']['from_line_override']
+  users opt['ssmtp'].fetch('users', [])
   action :install
 end
 
@@ -86,13 +102,15 @@ end
 include_recipe 'nodejs::nodejs_from_binary'
 
 ngx_http_ssl_module 'default' do
-  openssl_version '1.1.1d'
-  openssl_checksum '1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2'
+  openssl_version node['openssl']['version']
+  openssl_checksum node['openssl']['checksum']
   action :add
 end
 
 ngx_http_v2_module 'default'
 ngx_http_stub_status_module 'default'
+ngx_http_dav_module 'default'
+ngx_http_dav_ext_module 'default'
 
 dhparam_file 'default' do
   key_length 2048
@@ -102,9 +120,8 @@ end
 opt_enable_ipv6 = node['firewall']['ipv6_enabled']
 
 nginx_install 'default' do
-  version '1.17.5'
-  checksum '63ee35e15a75af028ffa1f995e2b9c120b59ef5f1b61a23b8a4c33c262fc10c3'
-  with_ipv6 opt_enable_ipv6
+  version node['ngx']['version']
+  checksum node['ngx']['checksum']
   with_threads false
   with_debug false
   directives(
@@ -226,6 +243,68 @@ redirect_host "www.#{node_part['fqdn']}" do
   action :create
 end
 
+webdav_root_dir = '/etc/chef-webdav'
+
+opt['webdav']['directories'].each do |descriptor|
+  private_webdav_directory descriptor do
+    credentials secret.get("webdav:directories:#{descriptor}:credentials")
+    root_dir opt['webdav']['root_dir']
+    action :create
+  end
+end
+
+private_sec_archive_dir 'webdav-backup' do
+  archive_dir opt['webdav']['root_dir']
+  environment secret.get('webdav:backup:environment', default: {})
+  public_key secret.get('webdav:backup:public_key')
+  cron opt['webdav']['backup']['cron']
+  action :setup
+end
+
+webdav_fqdn = opt['webdav']['fqdn']
+
+webdav_vhost_vars = {
+  fqdn: webdav_fqdn,
+  listen_ipv6: true,
+  default_server: false,
+  access_log_options: 'off',
+  error_log_options: 'error',
+  hsts_max_age: 15_768_000,
+  oscp_stapling: true,
+  resolvers: %w(8.8.8.8 1.1.1.1 8.8.4.4 1.0.0.1),
+  resolver_valid: 600,
+  resolver_timeout: 10,
+  certificate_entries: []
+}
+
+tls_rsa_certificate webdav_fqdn do
+  action :deploy
+end
+
+tls = ::ChefCookbook::TLS.new(node)
+webdav_vhost_vars[:certificate_entries] << tls.rsa_certificate_entry(webdav_fqdn)
+
+if tls.has_ec_certificate?(webdav_fqdn)
+  tls_ec_certificate webdav_fqdn do
+    action :deploy
+  end
+
+  webdav_vhost_vars[:certificate_entries] << tls.ec_certificate_entry(webdav_fqdn)
+end
+
+nginx_vhost webdav_fqdn do
+  cookbook 'private'
+  template 'nginx/webdav.vhost.conf.erb'
+  variables(lazy {
+    webdav_vhost_vars.merge(
+      access_log: ::File.join(node.run_state['nginx']['log_dir'], "#{webdav_fqdn}_access.log"),
+      error_log: ::File.join(node.run_state['nginx']['log_dir'], "#{webdav_fqdn}_error.log"),
+      locations: opt['webdav']['directories'].map { |x| [x, ::ChefCookbook::NgxHelper.include_path("chef-webdav-#{x}")] }.to_h
+    )
+  })
+  action :enable
+end
+
 include_recipe 'sockd::default'
 
 firewall_rule 'http' do
@@ -272,7 +351,7 @@ if opt_enable_ipv6
   end
 end
 
-node['private']['vpn'].each do |server_name, server_data|
+opt['vpn'].each do |server_name, server_data|
   vpn_server server_name do
     fqdn server_data['fqdn']
     user instance.user
@@ -300,14 +379,14 @@ node['private']['vpn'].each do |server_name, server_data|
   end
 end
 
-if node['private']['netdata']['slave']['enabled']
+if opt['netdata']['slave']['enabled']
   netdata_install 'default' do
     install_method 'source'
-    git_repository node['private']['netdata']['git_repository']
-    git_revision node['private']['netdata']['git_revision']
+    git_repository opt['netdata']['git_repository']
+    git_revision opt['netdata']['git_revision']
     git_source_directory '/opt/netdata'
-    autoupdate true
-    update true
+    autoupdate false
+    update false
   end
 
   netdata_config 'global' do
@@ -323,8 +402,8 @@ if node['private']['netdata']['slave']['enabled']
     group 'netdata'
     configurations(
       'enabled' => 'yes',
-      'destination' => node['private']['netdata']['slave']['stream']['destination'],
-      'api key' => secret.get("netdata:stream:api_key:#{node['private']['netdata']['slave']['stream']['name']}", required: node['private']['netdata']['slave']['enabled'], prefix_fqdn: false)
+      'destination' => opt['netdata']['slave']['stream']['destination'],
+      'api key' => secret.get("netdata:stream:api_key:#{opt['netdata']['slave']['stream']['name']}", required: opt['netdata']['slave']['enabled'], prefix_fqdn: false)
     )
   end
 
@@ -341,6 +420,17 @@ if node['private']['netdata']['slave']['enabled']
       }
     )
   end
+end
+
+private_acme 'acme' do
+  group 'acme'
+  account_email 'acme@srvr.work'
+  environment secret.get('acme:environment', default: {})
+  cron opt['acme']['cron']
+  backup_environment secret.get('acme:backup:environment', default: {})
+  backup_public_key secret.get('acme:backup:public_key')
+  backup_cron opt['acme']['backup']['cron']
+  action :setup
 end
 
 # volgactf_qualifier = node['private']['volgactf']['qualifier']

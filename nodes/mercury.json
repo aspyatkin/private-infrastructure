@@ -17,7 +17,7 @@
       },
       "fail2ban": {
         "enabled": true,
-        "destemail": "me@aspyatkin.com",
+        "destemail": "aspyatkin@gmail.com",
         "sender": "operator@srvr.work",
         "sendername": "Mercury Operator",
         "jail": {
@@ -25,6 +25,18 @@
             "maxretry": 5,
             "findtime": 259200,
             "bantime": 86400
+          }
+        }
+      },
+      "monitor": {
+        "netdata": {
+          "health": {
+            "telegram": {
+              "enabled": true,
+              "recipients": [
+                "-367415824"
+              ]
+            }
           }
         }
       }

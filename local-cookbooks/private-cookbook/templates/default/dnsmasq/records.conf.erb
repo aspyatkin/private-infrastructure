@@ -1,0 +1,11 @@
+<% @records.each do |record| %>
+<% if record.fetch('type', nil) == 'A' %>
+host-record=<%= record['name'] %>,<%= record['ipv4_address'] %>
+<% end %>
+<% if record.fetch('type', nil) == 'CNAME' %>
+cname=<%= record['cname'] %>,<%= record['target'] %>
+<% end %>
+<% if record.fetch('type', nil) == 'SRV' %>
+srv-host=_<%= record['service'] %>._<%= record['protocol'] %>.<%= record['domain'] %>,<%= record['target'] %>,<%= record['port'] %>,<%= record.fetch('priority', 0) %>,<%= record.fetch('weight', 0) %>
+<% end %>
+<% end %>

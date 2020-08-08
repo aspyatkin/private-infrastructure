@@ -1,0 +1,16 @@
+set $x $uri$request_method;
+if ($x ~ [^/]MKCOL$) {
+    rewrite ^(.*)$ $1/;
+}
+
+client_max_body_size 512m;
+alias <%= @dir %>;
+dav_access user:rw group:r all:r;
+dav_methods PUT DELETE MKCOL COPY MOVE;
+dav_ext_methods PROPFIND OPTIONS LOCK UNLOCK;
+dav_ext_lock zone=<%= @zone_name %>;
+create_full_put_path on;
+charset utf-8;
+autoindex on;
+auth_basic "Private area";
+auth_basic_user_file <%= @htpasswd_file %>;

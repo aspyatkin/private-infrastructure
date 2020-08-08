@@ -1,0 +1,119 @@
+{
+  "name": "mars",
+  "chef_environment": "production",
+  "normal": {
+    "knife_zero": {
+      "host": "mars.srvr.name"
+    },
+    "private": {
+      "personal": {
+        "fqdn": "aspyatkin.com",
+        "ruby_version": "2.6.5",
+        "bundler_version": "2.0.2"
+      },
+      "fail2ban": {
+        "enabled": true,
+        "destemail": "aspyatkin@gmail.com",
+        "sender": "operator@srvr.work",
+        "sendername": "Mars Operator",
+        "jail": {
+          "sshd": {
+            "maxretry": 5,
+            "findtime": 259200,
+            "bantime": 86400
+          }
+        }
+      },
+      "netdata": {
+        "slave": {
+          "enabled": false,
+          "stream": {
+            "name": "mars",
+            "destination": null
+          }
+        }
+      },
+      "ssmtp": {
+        "sender_email": "operator@srvr.work",
+        "smtp_host": "email-smtp.us-east-1.amazonaws.com",
+        "smtp_port": 465,
+        "smtp_username": "AKIAXVVRQZBGYH6SI7WA",
+        "smtp_enable_ssl": true,
+        "smtp_enable_starttls": false,
+        "from_line_override": true,
+        "users": [
+          "kirk",
+          "acme"
+        ]
+      },
+      "vpn": {
+        "gateway": {
+          "fqdn": "vpn.srvr.name",
+          "port": 1194,
+          "manage_firewall_rules": true,
+          "network": "10.29.0.0/24",
+          "redirect_gateway": true,
+          "certificate": {
+            "country": "RU",
+            "province": "Samara",
+            "city": "Samara",
+            "org": "srvr.name",
+            "email": "aspyatkin@gmail.com",
+            "ou": "IT",
+            "cn": "srvr.name CA"
+          },
+          "openvpn": {
+            "proto": "tcp",
+            "cipher": "AES-128-CBC"
+          },
+          "clients": {
+            "aspyatkin-mbp": {
+              "ipv4_address": "10.29.0.11"
+            }
+          }
+        }
+      },
+      "acme": {
+        "cron": {
+          "mailto": "aspyatkin@gmail.com",
+          "mailfrom": "acme@srvr.work",
+          "minute": "0",
+          "hour": "2"
+        },
+        "backup": {
+          "cron": {
+            "mailto": "aspyatkin@gmail.com",
+            "mailfrom": "acme@srvr.work",
+            "minute": "0",
+            "hour": "3"
+          }
+        }
+      },
+      "webdav": {
+        "fqdn": "webdav.pyatkin.ch",
+        "root_dir": "/etc/chef-webdav",
+        "directories": [
+          "bookmarks",
+          "journals",
+          "keepass"
+        ],
+        "backup": {
+          "cron": {
+            "mailto": "aspyatkin@gmail.com",
+            "mailfrom": "acme@srvr.work",
+            "minute": "15",
+            "hour": "2"
+          }
+        }
+      }
+    }
+  },
+  "automatic": {
+    "fqdn": "mars.srvr.name",
+    "platform": "ubuntu",
+    "platform_version": "20.04"
+  },
+  "run_list": [
+    "recipe[private::personal]"
+  ]
+}

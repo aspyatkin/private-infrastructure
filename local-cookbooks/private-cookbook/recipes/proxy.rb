@@ -134,14 +134,142 @@ node['private']['vpn'].each do |server_name, server_data|
   end
 end
 
+ngx_http_ssl_module 'default' do
+  openssl_version node['openssl']['version']
+  openssl_checksum node['openssl']['checksum']
+  action :add
+end
+
+ngx_http_v2_module 'default'
+ngx_http_stub_status_module 'default'
+
+dhparam_file 'default' do
+  key_length 2048
+  action :create
+end
+
+opt_enable_ipv6 = node['firewall']['ipv6_enabled']
+
+nginx_install 'default' do
+  version node['nginx']['version']
+  checksum node['nginx']['checksum']
+  with_ipv6 opt_enable_ipv6
+  with_threads false
+  with_debug false
+  directives(
+    main: {
+      worker_processes: 'auto'
+    },
+    events: {
+      worker_connections: 1024,
+      multi_accept: 'on'
+    },
+    http: {
+      server_tokens: 'off',
+      sendfile: 'on',
+      tcp_nopush: 'on',
+      tcp_nodelay: 'on',
+      keepalive_requests: 250,
+      keepalive_timeout: 100
+    }
+  )
+  action :run
+end
+
+nginx_conf 'gzip' do
+  cookbook 'private'
+  template 'nginx/gzip.conf.erb'
+  action :create
+end
+
+nginx_conf 'resolver' do
+  cookbook 'private'
+  template 'nginx/resolver.conf.erb'
+  variables(
+    resolvers: %w[1.1.1.1 8.8.8.8 1.0.0.1 8.8.4.4],
+    resolver_valid: 600,
+    resolver_timeout: 10
+  )
+  action :create
+end
+
+stub_status_host = '127.0.0.1'
+stub_status_port = 8099
+
+nginx_vhost 'stub_status' do
+  cookbook 'private'
+  template 'nginx/stub_status.vhost.erb'
+  variables(
+    host: stub_status_host,
+    port: stub_status_port
+  )
+  action :enable
+end
+
+nginx_conf 'ssl' do
+  cookbook 'ngx-modules'
+  template 'ssl.conf.erb'
+  variables(lazy {
+    {
+      ssl_dhparam: ::ChefCookbook::DHParam.file(node, 'default'),
+      ssl_configuration: 'modern'
+    }
+  })
+  action :create
+end
+
+logrotate_app 'nginx' do
+  path(lazy { ::File.join(node.run_state['nginx']['log_dir'], '*.log') })
+  frequency 'daily'
+  rotate 30
+  options %w[
+    missingok
+    compress
+    delaycompress
+    notifempty
+  ]
+  postrotate(lazy { "[ ! -f #{node.run_state['nginx']['pid']} ] || kill -USR1 `cat #{node.run_state['nginx']['pid']}`" })
+  action :enable
+end
+
+firewall_rule 'http' do
+  port 80
+  source '0.0.0.0/0'
+  protocol :tcp
+  command :allow
+end
+
+firewall_rule 'https' do
+  port 443
+  source '0.0.0.0/0'
+  protocol :tcp
+  command :allow
+end
+
+if opt_enable_ipv6
+  firewall_rule 'http_ipv6' do
+    port 80
+    source '::/0'
+    protocol :tcp
+    command :allow
+  end
+
+  firewall_rule 'https_ipv6' do
+    port 443
+    source '::/0'
+    protocol :tcp
+    command :allow
+  end
+end
+
 if node['private']['netdata']['slave']['enabled']
   netdata_install 'default' do
     install_method 'source'
     git_repository node['private']['netdata']['git_repository']
     git_revision node['private']['netdata']['git_revision']
     git_source_directory '/opt/netdata'
-    autoupdate true
-    update true
+    autoupdate false
+    update false
   end
 
   netdata_config 'global' do
@@ -160,5 +288,34 @@ if node['private']['netdata']['slave']['enabled']
       'destination' => node['private']['netdata']['slave']['stream']['destination'],
       'api key' => secret.get("netdata:stream:api_key:#{node['private']['netdata']['slave']['stream']['name']}", required: node['private']['netdata']['slave']['enabled'], prefix_fqdn: false)
     )
+  end
+
+  netdata_python_plugin 'nginx' do
+    owner 'netdata'
+    group 'netdata'
+    global_configuration(
+      'retries' => 1,
+      'update_every' => 1
+    )
+    jobs(
+      'local' => {
+        'url' => "http://#{stub_status_host}:#{stub_status_port}/stub_status"
+      }
+    )
+  end
+end
+
+volgactf_qualifier_proxy_opts = opt.fetch('volgactf', {}).fetch('qualifier', '').fetch('proxy', nil)
+unless volgactf_qualifier_proxy_opts.nil?
+  volgactf_qualifier_proxy volgactf_qualifier_proxy_opts['fqdn'] do
+    ipv4_address volgactf_qualifier_proxy_opts['ipv4_address']
+    secure volgactf_qualifier_proxy_opts.fetch('secure', true)
+    hsts_max_age volgactf_qualifier_proxy_opts.fetch('hsts_max_age', 15_768_000)
+    oscp_stapling volgactf_qualifier_proxy_opts.fetch('oscp_stapling', true)
+    resolvers volgactf_qualifier_proxy_opts.fetch('resolvers', %w(8.8.8.8 1.1.1.1 8.8.4.4 1.0.0.1))
+    resolver_valid volgactf_qualifier_proxy_opts.fetch('resolver_valid', 600)
+    resolver_timeout volgactf_qualifier_proxy_opts.fetch('resolver_timeout', 10)
+    access_log_options volgactf_qualifier_proxy_opts.fetch('access_log_options', 'combined')
+    error_log_options volgactf_qualifier_proxy_opts.fetch('error_log_options', 'error')
   end
 end

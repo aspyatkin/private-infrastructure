@@ -1,5 +1,5 @@
 default['private']['netdata']['git_repository'] = 'https://github.com/netdata/netdata.git'
-default['private']['netdata']['git_revision'] = 'v1.15.0'
+default['private']['netdata']['git_revision'] = 'v1.19.0'
 
 default['private']['netdata']['master']['listen']['host'] = '0.0.0.0'
 default['private']['netdata']['master']['listen']['port'] = 19999

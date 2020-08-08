@@ -1,0 +1,45 @@
+<?php
+
+$CONF['configured'] = true;
+
+$CONF['setup_password'] = '<%= @setup_password %>';
+
+$CONF['database_type'] = '<%= @database_type %>';
+$CONF['database_host'] = '<%= @database_host %>';
+$CONF['database_user'] = '<%= @database_user %>';
+$CONF['database_password'] = '<%= @database_password %>';
+$CONF['database_name'] = '<%= @database_name %>';
+$CONF['database_port'] = '<%= @database_port %>';
+
+$CONF['default_aliases'] = array (
+);
+
+$CONF['aliases'] = '<%= @aliases %>';
+$CONF['mailboxes'] = '<%= @mailboxes %>';
+$CONF['maxquota'] = '<%= @maxquota %>';
+$CONF['domain_quota_default'] = '<%= @domain_quota_default %>';
+
+$CONF['quota'] = 'YES';
+$CONF['domain_quota'] = 'YES';
+$CONF['quota_multiplier'] = '<%= @quota_multiplier %>';
+
+$CONF['edit_alias'] = 'NO';
+$CONF['alias_control'] = 'NO';
+$CONF['alias_control_admin'] = 'NO';
+$CONF['alias_domain'] = 'YES';
+
+$CONF['sendmail'] = 'NO';
+$CONF['fetchmail'] = 'NO';
+
+$CONF['show_footer_text'] = 'NO';
+
+$CONF['mailbox_postdeletion_script'] = 'sudo -u <%= @vmail_user %> <%= @mailbox_postdeletion_script %>';
+$CONF['domain_postdeletion_script'] = 'sudo -u <%= @vmail_user %> <%= @domain_postdeletion_script %>';
+
+$CONF['create_mailbox_subdirs_prefix']='';
+
+$CONF['used_quotas'] = 'YES';
+$CONF['new_quota_table'] = 'YES';
+
+$CONF['forgotten_user_password_reset'] = false;
+$CONF['forgotten_admin_password_reset'] = false;

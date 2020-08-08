@@ -111,8 +111,8 @@ if node['private']['netdata']['slave']['enabled']
     git_repository node['private']['netdata']['git_repository']
     git_revision node['private']['netdata']['git_revision']
     git_source_directory '/opt/netdata'
-    autoupdate true
-    update true
+    autoupdate false
+    update false
   end
 
   nsd_stats_command = '/usr/sbin/nsd-control stats_noreset'

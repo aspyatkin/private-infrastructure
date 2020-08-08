@@ -1,0 +1,36 @@
+server {
+  <% if @listen_ipv6 %>
+  listen [::]:443 ssl http2<% if @default_server %> default_server<% end %>;
+  <% end %>
+  listen 443 ssl http2<% if @default_server %> default_server<% end %>;
+
+  server_name <%= @fqdn %>;
+
+  <% if @access_log_options == 'off' %>
+  access_log off;
+  <% else %>
+  access_log <%= @access_log %><% unless @access_log_options.empty? %> <%= @access_log_options %><% end %>;
+  <% end %>
+  error_log <%= @error_log %><% unless @error_log_options.empty? %> <%= @error_log_options %><% end %>;
+
+  <% @certificate_entries.each do |item| %>
+  ssl_certificate <%= item.certificate_path %>; # CRC32: <%= item.certificate_checksum %>
+  ssl_certificate_key <%= item.certificate_private_key_path %>; # CRC32: <%= item.certificate_private_key_checksum %>
+  <% end %>
+
+  add_header DAV '1, 2' always;
+
+  <% if @oscp_stapling %>
+  ssl_stapling on;
+  ssl_stapling_verify on;
+  resolver <%= @resolvers.join(' ') %> valid=<%= @resolver_valid %>s;
+  resolver_timeout <%= @resolver_timeout %>s;
+  <% end %>
+  charset utf-8;
+
+  <% @locations.each do |path, include| %>
+  location /<%= path %> {
+    include <%= include %>;
+  }
+  <% end %>
+}

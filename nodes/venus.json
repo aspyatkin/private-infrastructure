@@ -24,7 +24,7 @@
           "enabled": false,
           "stream": {
             "name": "venus",
-            "destination": "undefined"
+            "destination": null
           }
         }
       },
@@ -61,6 +61,9 @@
             },
             "aspyatkin-letsencrypt": {
               "ipv4_address": "10.22.0.100"
+            },
+            "volgactf-qualifier-dev": {
+              "ipv4_address": "10.22.0.110"
             }
           }
         },
@@ -86,6 +89,14 @@
             "aspyatkin-mbp": {
               "ipv4_address": "10.21.0.11"
             }
+          }
+        }
+      },
+      "volgactf": {
+        "qualifier": {
+          "proxy": {
+            "fqdn": "dev.qualifier.volgactf.org",
+            "ipv4_address": "10.22.0.110"
           }
         }
       }

@@ -1,0 +1,9 @@
+no-resolv
+listen-address=<%= @listen_address %>
+<% if @bind_interfaces %>
+bind-interfaces
+<% end %>
+
+<% @forward_servers.each do |ip_address| %>
+server=<%= ip_address %>
+<% end %>

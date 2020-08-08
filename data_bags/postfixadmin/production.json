@@ -1,0 +1,10 @@
+{
+  "id": "production",
+  "mars.srvr.name": {
+    "encrypted_data": "4sz1RSIDAL8Y5O8+rjZlMPVmCEq4cmOU0/EAwqkX5XZjDeOXL/ix2/BrXqtE\nwjPO0Z92eSDfeS1wmqus7AqxlsFHdF5G+Y/2fhGjccFVpiJ1LRi0eukOajDT\n1LYK4IZT586Qd4yfRQLLloZafgEEkmAKdxx00ejI3CgnIC4=\n",
+    "iv": "7NMK9DbOZc/l9D87\n",
+    "auth_tag": "k2zGSNBtsg0wU6d0kV1p2g==\n",
+    "version": 3,
+    "cipher": "aes-256-gcm"
+  }
+}

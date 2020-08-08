@@ -1,34 +1,34 @@
 {
-  "name": "neptune",
+  "name": "uranus",
   "chef_environment": "production",
   "normal": {
     "knife_zero": {
-      "host": "neptune.srvr.name"
+      "host": "uranus.srvr.name"
     },
     "private": {
       "netdata": {
         "slave": {
           "enabled": false,
           "stream": {
-            "name": "neptune",
-            "destination": "51.15.42.102"
+            "name": "saturn",
+            "destination": null
           }
         }
       },
       "ssmtp": {
         "sender_email": "operator@srvr.work",
-        "smtp_host": "smtp.mailgun.org",
-        "smtp_port": 587,
-        "smtp_username": "operator@mg.srvr.work",
-        "smtp_enable_starttls": true,
-        "smtp_enable_ssl": false,
+        "smtp_host": "email-smtp.us-east-1.amazonaws.com",
+        "smtp_port": 465,
+        "smtp_username": "AKIAXVVRQZBGYH6SI7WA",
+        "smtp_enable_ssl": true,
+        "smtp_enable_starttls": false,
         "from_line_override": true
       },
       "fail2ban": {
         "enabled": true,
         "destemail": "aspyatkin@gmail.com",
         "sender": "operator@srvr.work",
-        "sendername": "Neptune Operator",
+        "sendername": "Uranus Operator",
         "jail": {
           "sshd": {
             "maxretry": 5,
@@ -40,9 +40,9 @@
     }
   },
   "automatic": {
-    "fqdn": "neptune.srvr.name",
+    "fqdn": "uranus.srvr.name",
     "platform": "ubuntu",
-    "platform_version": "18.04"
+    "platform_version": "20.04"
   },
   "run_list": [
     "recipe[private::nsd_slave]"

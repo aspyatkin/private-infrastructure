@@ -43,3 +43,5 @@ unless ignore_secret_file
           " <#{environment}>!"
   end
 end
+
+config_log_level ::ENV.fetch('KNIFE_NODE_LOG_LEVEL', 'warn').to_sym

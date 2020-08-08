@@ -29,7 +29,7 @@
           "enabled": false,
           "stream": {
             "name": "earth",
-            "destination": "undefined"
+            "destination": null
           }
         }
       },

@@ -68,8 +68,8 @@ template '/etc/fail2ban/jail.local' do
 end
 
 ngx_http_ssl_module 'default' do
-  openssl_version '1.1.1b'
-  openssl_checksum '5c557b023230413dfb0756f3137a13e6d726838ccd1430888ad15bfb2b43ea4b'
+  openssl_version '1.1.1d'
+  openssl_checksum '1e3a91bc1f9dfce01af26026f856e064eab4c8ee0a8f457b5ae30b40b8b711f2'
   action :add
 end
 
@@ -84,8 +84,8 @@ end
 opt_enable_ipv6 = node['firewall']['ipv6_enabled']
 
 nginx_install 'default' do
-  version '1.15.11'
-  checksum 'd5eb2685e2ebe8a9d048b07222ffdab50e6ff6245919eebc2482c1f388e3f8ad'
+  version '1.17.7'
+  checksum 'b62756842807e5693b794e5d0ae289bd8ae5b098e66538b2a91eb80f25c591ff'
   with_ipv6 opt_enable_ipv6
   with_threads false
   with_debug false
@@ -111,7 +111,7 @@ end
 
 nginx_conf 'gzip' do
   cookbook 'private'
-  template 'gzip.nginx.conf.erb'
+  template 'nginx/gzip.conf.erb'
   action :create
 end
 
@@ -170,8 +170,8 @@ netdata_install 'default' do
   git_repository opt['netdata']['git_repository']
   git_revision opt['netdata']['git_revision']
   git_source_directory '/opt/netdata'
-  autoupdate true
-  update true
+  autoupdate false
+  update false
 end
 
 netdata_config 'global' do
@@ -204,6 +204,20 @@ service 'netdata' do
 end
 
 secret = ::ChefCookbook::Secret::Helper.new(node)
+
+template '/etc/netdata/health_alarm_notify.conf' do
+  source 'netdata/health_alarm_notify.conf.erb'
+  owner 'netdata'
+  group 'netdata'
+  mode 0o644
+  variables(
+    telegram_enabled: opt['monitor']['netdata']['health']['telegram']['enabled'],
+    telegram_bot_token: secret.get('telegram:bot_token', required: opt['monitor']['netdata']['health']['telegram']['enabled'], default: nil),
+    telegram_recipients: opt['monitor']['netdata']['health']['telegram']['recipients']
+  )
+  action :create
+  notifies :restart, 'service[netdata]', :delayed
+end
 
 opt['netdata']['master']['stream'].each do |stream_name, stream_data|
   netdata_stream stream_name do
@@ -278,7 +292,7 @@ end
 
 nginx_vhost 'netdata' do
   cookbook 'private'
-  template 'nginx/netdata.vhost.erb'
+  template 'netdata/nginx.vhost.erb'
   variables(lazy {
     ngx_vars.merge(
       access_log: ::File.join(
